@@ -17,7 +17,7 @@ class AfricanUsers implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        //
+        $builder->where('location', 'Africa');
     }
 
 }

@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\AfricanUsers;
+use App\Models\Scopes\OlderUsers;
+use App\Models\Scopes\VerifiedUsers;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -29,6 +32,31 @@ class User extends Authenticatable
         'website',
         'password',
     ];
+
+    /**
+     * The "booted" method of the model.
+     * define all scopes
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::addGlobalScope(new VerifiedUsers);
+        static::addGlobalScope(new OlderUsers);
+        static::addGlobalScope(new AfricanUsers);
+    }
+
+    /**
+     * Scope a query to only include users of a particular gender.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  mixed  $gender
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOfGender($query, $gender)
+    {
+        return $query->where('gender', $gender);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

@@ -17,7 +17,7 @@ class VerifiedUsers implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        //
+        $builder->where('is_verified', 1);
     }
 
 }

@@ -20,3 +20,15 @@ Route::get('/', function () {
 
 // fetch all users
 Route::get('all-users', [UserController::class, 'fetchAllUsers']);
+
+// fetch only verfied users
+Route::get('verified-users', [UserController::class, 'fetchVerifiedUsers']);
+
+// fetch only older users
+Route::get('older-users', [UserController::class, 'fetchOlderUsers']);
+
+// fetch only African users
+Route::get('african-users', [UserController::class, 'fetchAfricanUsers']);
+
+// fetch users by gender
+Route::get('users-by-gender', [UserController::class, 'fetchUsersByGender']);
