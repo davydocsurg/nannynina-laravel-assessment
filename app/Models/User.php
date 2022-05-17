@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -20,6 +19,14 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'handle',
+        'description',
+        'location',
+        'age',
+        'profile_picture',
+        'is_verified',
+        'gender',
+        'website',
         'password',
     ];
 
@@ -41,4 +48,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // define a hasMany relationship between users and tweets
+    public function tweets()
+    {
+        return $this->hasMany(Tweet::class);
+    }
 }

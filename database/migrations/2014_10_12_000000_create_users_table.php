@@ -17,6 +17,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('handle')->unique();
+            $table->string('description')->nullable();
+            $table->string('location')->nullable();
+            $table->string('age')->nullable();
+            $table->string('profile_picture')->default('avatar.png');
+            $table->boolean('is_verified')->default(false);
+            $table->enum('gender', ['male', 'female']);
+            $table->string('website')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
